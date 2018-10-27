@@ -4,7 +4,7 @@
   "description": "\"# rsschool-codejam\"",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "node ./node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
