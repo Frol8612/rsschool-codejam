@@ -3,5 +3,4 @@ const sumOfOther = array => {
   return array.map(a => sum - a);
 };
 
-// eslint-disable-next-line no-console
-console.log(sumOfOther([2, 3, 4, 1]));
+module.exports = sumOfOther;
