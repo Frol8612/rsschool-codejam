@@ -4,13 +4,13 @@
   "description": "\"# rsschool-codejam\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Frol8612/rsschool-codejam.git"
   },
-  "author": "",
+  "author": "Pavel Fralou",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Frol8612/rsschool-codejam/issues"
@@ -19,6 +19,7 @@
   "devDependencies": {
     "eslint": "^5.8.0",
     "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-import": "^2.14.0",
     "mocha": "^5.2.0"
   },
