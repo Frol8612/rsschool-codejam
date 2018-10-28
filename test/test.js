@@ -1,6 +1,7 @@
 const assert = require('assert');
 const sumOfOther = require('../sumOfOther');
 const make = require('../make');
+const recursion = require('../recursion');
 
 describe('sumOfOther', () => {
   it('test 1', () => {
@@ -183,12 +184,206 @@ describe('make', () => {
     assert.equal(make(sum, 3)(87, 90, 45, 350, 450, 100)(12, 8, 10, 5, 7, 9)(555)(54, 6, 48, 5)(85, 79, 89)(236), 2333);
   });
   it('test 8', () => {
-    assert.equal(make(100, 11, 562, 789, 56666, 554, 78, 89)(sum)(870, 56, 605, 35, 50)(1000)(555)(540, 60, 248)(85, 79, 89)(236, 15, 926, 56), 64354);
+    assert.equal(
+      make(100, 11, 562, 789, 56666, 554, 78, 89)(sum)(870, 56, 605, 35, 50)(1000)(555)(540, 60, 248)(85, 79, 89)(
+        236,
+        15,
+        926,
+        56
+      ),
+      64354
+    );
   });
   it('test 9', () => {
-    assert.equal(make(100, sum, 800)(12)(123)(578)(350, 450)(1000, 150, 569, 48, 79, 46, 13, 25, 4896, 45)(555, 23154)(5405)(8902)(56956), 104256);
+    assert.equal(
+      make(100, sum, 800)(12)(123)(578)(350, 450)(1000, 150, 569, 48, 79, 46, 13, 25, 4896, 45)(555, 23154)(5405)(8902)(
+        56956
+      ),
+      104256
+    );
   });
   it('test 10', () => {
-    assert.equal(make(102354)(12)(4568)(5, 6, 8, 9, 1, 2, 7, 8, 6)(900, 85, 46, 79, 58, 46, 17, 23, 497, 79, 89, 145)(10)(554)(54, 23, 48, 79, 7964, 163)(sum)(556, 568), 119069);
+    assert.equal(
+      make(102354)(12)(4568)(5, 6, 8, 9, 1, 2, 7, 8, 6)(900, 85, 46, 79, 58, 46, 17, 23, 497, 79, 89, 145)(10)(554)(
+        54,
+        23,
+        48,
+        79,
+        7964,
+        163
+      )(sum)(556, 568),
+      119069
+    );
+  });
+});
+
+describe('recursion', () => {
+  it('test 1', () => {
+    assert.deepEqual(
+      recursion({
+        value: 100,
+        left: { value: 90, left: { value: 70 }, right: { value: 99 } },
+        right: { value: 120, left: { value: 110 }, right: { value: 130 } },
+      }),
+      [[100], [90, 120], [70, 99, 110, 130]]
+    );
+  });
+  it('test 2', () => {
+    assert.deepEqual(
+      recursion({
+        value: 15,
+        left: {
+          value: 7,
+          left: {
+            value: 17,
+            left: { value: 10 },
+            right: { value: 123 },
+          },
+          right: { value: 99 },
+        },
+        right: {
+          value: 12,
+          left: {
+            value: 110,
+            left: { value: 45 },
+            right: { value: 65 },
+          },
+          right: {
+            value: 130,
+            left: { value: 98 },
+            right: { value: 37 },
+          },
+        },
+      }),
+      [[15], [7, 12], [17, 99, 110, 130], [10, 123, 45, 65, 98, 37]]
+    );
+  });
+  it('test 3', () => {
+    assert.deepEqual(
+      recursion({
+        value: 11,
+        left: {
+          value: 7,
+          right: {
+            value: 49,
+            left: { value: 68 },
+            right: { value: 47 },
+          },
+        },
+        right: {
+          value: 46,
+          left: {
+            value: 110,
+            left: { value: 35 },
+            right: { value: 76 },
+          },
+          right: { value: 60 },
+        },
+      }),
+      [[11], [7, 46], [49, 110, 60], [68, 47, 35, 76]]
+    );
+  });
+  it('test 4', () => {
+    assert.deepEqual(
+      recursion({
+        value: 1,
+        left: {
+          value: 4,
+          right: {
+            value: 49,
+            left: {
+              value: 6,
+              left: { value: 26 },
+              right: { value: 35 },
+            },
+            right: {
+              value: 27,
+              left: { value: 48 },
+              right: { value: 52 },
+            },
+          },
+        },
+        right: {
+          value: 36,
+          left: {
+            value: 110,
+            left: {
+              value: 35,
+              left: { value: 56 },
+              right: { value: 103 },
+            },
+            right: {
+              value: 76,
+              left: { value: 139 },
+              right: { value: 479 },
+            },
+          },
+          right: { value: 180 },
+        },
+      }),
+      [[1], [4, 36], [49, 110, 180], [6, 27, 35, 76], [26, 35, 48, 52, 56, 103, 139, 479]]
+    );
+  });
+  it('test 5', () => {
+    assert.deepEqual(
+      recursion({
+        value: 777,
+        left: {
+          value: 6,
+          right: {
+            value: 37,
+            left: {
+              value: 15,
+              left: { value: 26 },
+              right: { value: 35 },
+            },
+            right: {
+              value: 26,
+              left: { value: 48 },
+              right: { value: 52 },
+            },
+          },
+          left: {
+            value: 15,
+            left: { value: 7 },
+            right: { value: 12 },
+          },
+        },
+        right: {
+          value: 22,
+          left: {
+            value: 46,
+            left: {
+              value: 39,
+              left: {
+                value: 26,
+                left: { value: 87 },
+                right: { value: 90 },
+              },
+              right: {
+                value: 37,
+                left: { value: 101 },
+                right: { value: 130 },
+              },
+            },
+            right: {
+              value: 49,
+              left: {
+                value: 48,
+                left: { value: 145 },
+                right: { value: 213 },
+              },
+              right: {
+                value: 59,
+                left: { value: 325 },
+                right: { value: 447 },
+              },
+            },
+          },
+          right: { value: 59 },
+        },
+      }),
+      [ [ 777 ], [ 6, 22 ], [ 15, 37, 46, 59 ], [ 7, 12, 15, 26, 39, 49 ], [ 26, 35, 48, 52, 26, 37, 48, 59 ], [ 87, 90, 101, 130, 145, 213, 325, 447 ] ]
+    );
   });
 });
